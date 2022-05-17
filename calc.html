@@ -10,10 +10,10 @@
     <button onclick="keisan()"type="button" name="button">計算する</button>
     <script type="text/javascript">
       function keisan() {
-        var prompt_a = prompt("一つ目の数を入れて下さい");
-        var prompt_b = prompt("二つ目の数を入れて下さい");
+        var element1=document.getElementbyId('int1');
+        var element2=document.getElementbyId('int2');
 
-        var result=parseInt(prompt_a) + parseInt(prompt_b);
+        var result=parseInt(element1) + parseInt(element2);
 
         alert(result);
       }
