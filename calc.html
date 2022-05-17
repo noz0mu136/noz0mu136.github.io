@@ -5,13 +5,18 @@
     <title></title>
   </head>
   <body>
+    <input id="int1" ype="text" name="" value="">
+    <input id="int2" type="text" name="" value="">
+    <button onclick="keisan()"type="button" name="button">計算する</button>
     <script type="text/javascript">
-      var prompt_a = prompt("一つ目の数を入れて下さい");
-      var prompt_b = prompt("二つ目の数を入れて下さい");
+      function keisan() {
+        var prompt_a = prompt("一つ目の数を入れて下さい");
+        var prompt_b = prompt("二つ目の数を入れて下さい");
 
-      var result=parseInt(prompt_a) + parseInt(prompt_b);
+        var result=parseInt(prompt_a) + parseInt(prompt_b);
 
-      alert(result);
+        alert(result);
+      }
     </script>
   </body>
 </html>
