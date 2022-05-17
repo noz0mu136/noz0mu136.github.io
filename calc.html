@@ -7,13 +7,13 @@
   <body>
     <input id="int1" ype="text" name="" value="">
     <input id="int2" type="text" name="" value="">
-    <button onclick="keisan()"type="button" name="button">計算する</button>
+    <button onclick="keisan()"type="button" name="button"></button>
     <script type="text/javascript">
       function keisan() {
-        var element1=document.getElementbyId('int1');
-        var element2=document.getElementbyId('int2');
+        var element1=document.getElementById('int1');
+        var element2=document.getElementById('int2');
 
-        var result=parseInt(element1) + parseInt(element2);
+        var result=parseInt(element1.value) + parseInt(element2.value);
 
         alert(result);
       }
