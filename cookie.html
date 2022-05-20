@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <style media="screen">
+      img{width:50%;}
+    </style>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      count=0;
+      function cookie_click() {
+        span=document.getElementById('cookie_count');
+        count++;
+        span.textContent=count;
+      }
+      function grandma() {
+        setInterval(autoCountUp,10);
+      }
+      function autoCountUp() {
+        span=document.getElementById('cookie_count');
+        count++;
+        span.textContent=count;
+      }
+    </script>
+    <p><span id="cookie_count"></span>回</p>
+    <img onclick="cookie_click()" src="bot.jpeg" alt="">
+    <u1>
+      <li onclick="grandma()">具欄間</li>
+      <li>不亞夢</li>
+  </body>
+</html>
