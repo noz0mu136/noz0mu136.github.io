@@ -10,24 +10,59 @@
   <body>
     <script type="text/javascript">
       count=0;
-      function cookie_click() {
+      grandma_count=0;
+      fam_count=0;
+      setInterval(sen,10)
+      function sen() {
         span=document.getElementById('cookie_count');
-        count++;
         span.textContent=count;
+      }
+      function cookie_click() {
+
+        count++;
+
       }
       function grandma() {
-        setInterval(autoCountUp,10);
+        if (count>=10) {
+        count-=10;
+        grandma_count++
+        setInterval(autoCountUp,1000,1);
       }
-      function autoCountUp() {
-        span=document.getElementById('cookie_count');
-        count++;
-        span.textContent=count;
+      }
+      function autoCountUp(num) {
+
+        count=count+num;
+
+      }
+      function fam() {
+        if (count>=300) {
+        count-=300;
+        fam_count++;
+        setInterval(autoCountUp,1000,5);
+      }
+      }
+      function autoCountUp(num) {
+
+        count=count+num;
+
+      }
+      function mine() {
+        if (count>=2000) {
+        count-=2000;
+        setInterval(autoCountUp,1000,100);
+      }
+      }
+      function autoCountUp(num) {
+
+        count=count+num;
+
       }
     </script>
     <p><span id="cookie_count"></span>回</p>
     <img onclick="cookie_click()" src="bot.jpeg" alt="">
     <u1>
-      <li onclick="grandma()">具欄間</li>
-      <li>不亞夢</li>
+      <li onclick="grandma()">具欄間　10</li>
+      <li onclick="fam()">不亞夢　300</li>
+      <li onclick="mine()">mine　2000</li>
   </body>
 </html>
