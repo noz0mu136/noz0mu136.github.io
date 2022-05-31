@@ -2,32 +2,103 @@
 <html lang="en" dir="ltr">
   <head>
     <style media="screen">
+    body{margin: 10;
+    height: 100vh}
       img{width:50%;}
+      .container{
+        display: flex;
+      height: 100vh;}
+      .item1{flex-grow: 2;
+      background-image: url("");}
+      .item2{flex-grow: 4;
+      background-color: green;}
+      .item3{flex-grow: 3;
+        background-color: red;}
     </style>
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
     <script type="text/javascript">
+    let ls_count=localStorage.getItem("ls_count");
+    if (ls_count) {
+      count=parseInt(ls_count);
+    }else {
       count=0;
-      function cookie_click() {
-        span=document.getElementById('cookie_count');
-        count++;
+    }
+
+    setInterval(save_a,1000);
+
+    function save_a() {
+      localStorage.setItem("ls_count",count);
+    }
+      grandma_count=0;
+      fam_count=0;
+      setInterval(sen,10)
+      function sen() {
+        span=document.getElementById('count')
         span.textContent=count;
+      }
+      function cookie_click() {
+
+        count++;
+
       }
       function grandma() {
-        setInterval(autoCountUp,10);
+        if (count>=10) {
+        count-=10;
+        grandma_count++
+        setInterval(autoCountUp,1000,1);
       }
-      function autoCountUp() {
-        span=document.getElementById('cookie_count');
-        count++;
-        span.textContent=count;
+      }
+      function autoCountUp(num) {
+
+        count=count+num;
+
+      }
+      function fam() {
+        if (count>=300) {
+        count-=300;
+        fam_count++;
+        setInterval(autoCountUp,1000,5);
+      }
+      }
+      function autoCountUp(num) {
+
+        count=count+num;
+
+      }
+      function mine() {
+        if (count>=2000) {
+        count-=2000;
+        setInterval(autoCountUp,1000,100);
+      }
+      }
+      function autoCountUp(num) {
+
+        count=count+num;
+
       }
     </script>
-    <p><span id="cookie_count"></span>回</p>
-    <img onclick="cookie_click()" src="bot.jpeg" alt="">
-    <u1>
-      <li onclick="grandma()">具欄間</li>
-      <li>不亞夢</li>
+    <div class="container">
+    <div class="item1">
+      <p><span id="count"></span>回</p>
+      <img onclick="cookie_click()" src="zunda.jpg" alt="">
+      <p>
+        <span id="count"></span>
+      </p>
+      <img src="" alt="">
+    </div>
+    <div class="item2">
+      制作
+    </div>
+    <div class="item3">
+      <u1>
+        <li onclick="grandma()">具欄間　10</li>
+        <li onclick="fam()">不亞夢　300</li>
+        <li onclick="mine()">mine　2000</li>
+      </ul>
+    </div>
+    </div>
   </body>
 </html>
