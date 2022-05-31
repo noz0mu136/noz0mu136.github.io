@@ -25,6 +25,7 @@
       count=parseInt(ls_count);
     }else {
       count=0;
+<<<<<<< HEAD
     }
 
     setInterval(save_a,1000);
@@ -32,12 +33,24 @@
     function save_a() {
       localStorage.setItem("ls_count",count);
     }
+=======
+>>>>>>> 712c4d064f2c74f16e06d9f6e1d526f08e33818f
       grandma_count=0;
       fam_count=0;
       setInterval(sen,10)
       function sen() {
+<<<<<<< HEAD
         span=document.getElementById('count')
         span.textContent=count;
+      }
+      function cookie_click() {
+
+        count++;
+
+=======
+        span=document.getElementById('cookie_count');
+        span.textContent=count;
+>>>>>>> 712c4d064f2c74f16e06d9f6e1d526f08e33818f
       }
       function cookie_click() {
 
@@ -80,6 +93,7 @@
 
       }
     </script>
+<<<<<<< HEAD
     <div class="container">
     <div class="item1">
       <p><span id="count"></span>回</p>
@@ -100,5 +114,13 @@
       </ul>
     </div>
     </div>
+=======
+    <p><span id="cookie_count"></span>回</p>
+    <img onclick="cookie_click()" src="bot.jpeg" alt="">
+    <u1>
+      <li onclick="grandma()">具欄間　10</li>
+      <li onclick="fam()">不亞夢　300</li>
+      <li onclick="mine()">mine　2000</li>
+>>>>>>> 712c4d064f2c74f16e06d9f6e1d526f08e33818f
   </body>
 </html>
