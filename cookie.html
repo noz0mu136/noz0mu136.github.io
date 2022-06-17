@@ -18,12 +18,49 @@
       background-color: green;}
       .item3{flex-grow: 3;
         background-color: red;}
+        #iop{
+          display:none;
+        }
     </style>
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
     <script type="text/javascript">
+
+    let event_ids=[];
+
+    class Building{
+
+      constructor(time,num){
+        this.event_ids=[];
+        this.setInterval_time=time;
+        this.add_num;
+      }
+      count_up(num){
+        count+=num
+      }
+      buy(){
+        let self=this;
+        let return_id=setInterval(function(){
+          self.count_up(self.add_num);
+        },1000);
+        this.event_ids.push(return_id);
+      }
+      sell(){
+        let return_id=this.event_ids.pop();
+        clearInterval(return_id);
+      }
+    }
+
+    let mine=new Building(10000,1);
+    let fam=new Building(1000,1);
+    let grandma=new Building(100,4);
+
+    cursor.buy();
+
+    cursor.sell();
+
     let ls_count=localStorage.getItem("ls_count");
     if (ls_count) {
       count=parseInt(ls_count);
@@ -51,6 +88,7 @@
         count++;
 
       }
+      /*
       function grandma() {
         if (count>=10) {
         count-=10;
@@ -81,11 +119,23 @@
         setInterval(autoCountUp,1000,100);
       }
       }
+      */
       function autoCountUp(num) {
 
         count=count+num;
 
       }
+      function buildSwitch(){
+        let buy_element =document.getElementById('mko');
+        let sell_element =document.getElementById('iop');
+        if(buy_element.style.display !="none"){
+          buy_element.style.display="block";
+        }else{
+          buy_element.style.display !="block"){
+            buy_element.style.display="none";
+        }
+      }
+
     </script>
     <div class="container">
     <div class="item1">
@@ -100,12 +150,22 @@
       制作
     </div>
     <div class="item3">
+    <div id="mko">
+    <span onclick="buildSwitch()">購入</span>
       <u1>
         <li onclick="grandma()">具欄間　10</li>
         <li onclick="fam()">不亞夢　300</li>
         <li onclick="mine()">mine　2000</li>
       </ul>
     </div>
+    <div id="iop">
+    <span onclick="buildSwitch()">売却</span>
+      <u1>
+        <li onclick="granma.sell()">具欄間　-10</li>
+        <li onclick="sell_fam()">不亞夢　-300</li>
+        <li onclick="sell_mine()">mine　-2000</li>
+      </ul>
     </div>
+        </div>
   </body>
 </html>
