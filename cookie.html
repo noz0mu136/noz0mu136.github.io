@@ -40,13 +40,16 @@
       count_up(num){
         count+=num
       }
-      buy(){
+      buy(count>=10){
+        count-10;
+        if(){
         let self=this;
         let return_id=setInterval(function(){
           self.count_up(self.add_num);
         },1000);
         this.event_ids.push(return_id);
       }
+    }
       sell(){
         let return_id=this.event_ids.pop();
         clearInterval(return_id);
