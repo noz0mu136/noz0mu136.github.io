@@ -29,10 +29,11 @@
 
           class Building {
             //初期値の定義
-            constructor(time,num) {
+            constructor(time,num,cost) {
               this.interval_ids =[];
               this.interval_time = time;
               this.add_num = num;
+              this.cost=cost;
             }
             get count(){
               return this.interval_ids.length;
@@ -43,8 +44,8 @@
             }
             //購入を行ったときの処理
             buy(){
-              if(cookie_count>=10){
-                cookie_count -=10;
+              if(cookie_count>=this.cost){
+                cookie_count -=this.cost;
                 let self = this;
                 let return_id = setInterval(function() {
                   self.count_up(self.add_num);
@@ -60,7 +61,7 @@
             }
           };
 
-          let grandma = new Building(1000,4);
+          let grandma = new Building(1000,4,100);
 
 
           /*クッキーのカウンタ */
