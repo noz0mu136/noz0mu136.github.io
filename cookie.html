@@ -1,174 +1,185 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <link
-   rel="stylesheet"
-   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
- />
-    <style media="screen">
-    body{margin: 0;
-    height: 100vh}
-      img{width:50%;}
-      .container{
-        display: flex;
-      height: 100vh;}
-      .item1{flex-grow: 2;
-      background-color: green;}
-      .item2{flex-grow: 4;
-      background-color: green;}
-      .item3{flex-grow: 3;
-        background-color: red;}
-        #iop{
-          display:none;
-        }
-    </style>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <script type="text/javascript">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style media="screen">
+  body{ margin: 0;}
+  img{ width:50px;}
+  .container{
+    display:flex;
+    height: 100vh;}
+  .item1{ flex-grow:2;
+    background-image: url("bgBlue.jpg");}
+  .item2{ flex-grow:4;
+    background-color: green;}
+  .item3{ flex-grow:3;
+    background-color: red;}
 
-    let event_ids=[];
+  #buildings_sell{
+    display: none;
+  }
+  </style>
+        </head>
+        <body>
+          <script type="text/javascript">
 
-    class Building{
+          /*インターバルIDの格納先*/
+          let event_ids = [];
 
-      constructor(time,num){
-        this.event_ids=[];
-        this.setInterval_time=time;
-        this.add_num;
-      }
-      count_up(num){
-        count+=num
-      }
-      buy(count>=10){
-        count-10;
-        if(){
-        let self=this;
-        let return_id=setInterval(function(){
-          self.count_up(self.add_num);
-        },1000);
-        this.event_ids.push(return_id);
-      }
-    }
-      sell(){
-        let return_id=this.event_ids.pop();
-        clearInterval(return_id);
-      }
-    }
+          class Building {
+            //初期値の定義
+            constructor(time,num) {
+              this.interval_ids =[];
+              this.interval_time = time;
+              this.add_num = num;
+            }
+            get count(){
+              return this.interval_ids.length;
+            }
+            //カウントアップ用
+            count_up(num){
+              cookie_count +=num;
+            }
+            //購入を行ったときの処理
+            buy(){
+              if(cookie_count>=10){
+                cookie_count -=10;
+                let self = this;
+                let return_id = setInterval(function() {
+                  self.count_up(self.add_num);
+                },1000);
+                this.interval_ids.push(return_id);
 
-    let mine=new Building(10000,1);
-    let fam=new Building(1000,1);
-    let grandma=new Building(100,4);
+              }
+            }
+            //売却のメソッド
+            sell(){
+              let return_id= this.interval_ids.pop();
+              clearInterval(return_id);
+            }
+          };
 
-    cursor.buy();
+          let grandma = new Building(1000,4);
 
-    cursor.sell();
 
-    let ls_count=localStorage.getItem("ls_count");
-    if (ls_count) {
-      count=parseInt(ls_count);
-    }else {
-      count=0;
-    }
+          /*クッキーのカウンタ */
+          let ls_count = localStorage.getItem("ls_count");
+          if (ls_count){
+            cookie_count = 10000;//parseInt(ls_count);
+          } else{
+            cookie_count = 0;
+          }
+          setInterval(save_action,1000);
+          function save_action() {
+            localStorage.setItem("ls_count",cookie_count);
+          }
 
-    setInterval(save_a,1000);
+          su_event_id = setInterval(screen_update,100);
+          function screen_update() {
+            var count_text = document.getElementById('cookie_count')
+            count_text.textContent = cookie_count;
+          }
 
-    function save_a() {
-      localStorage.setItem("ls_count",count);
-    }
-      grandma_count=0;
-      fam_count=0;
-      setInterval(sen,10)
-      function sen() {
-        span=document.getElementById('count')
-        span.textContent=count;
-      }
-      function cookie_click() {
-        var zunda_img=document.getElementById('zunda_img');
-        zunda_img.classList.remove('animate__animated','animate__wobble');
-        void zunda_img.offsetWidth;
-        zunda_img.classList.add('animate__animated','animate__wobble');
-        count++;
+          function event_clear() {
+            clearInterval(su_event_id);
+          }
 
-      }
-      /*
-      function grandma() {
-        if (count>=10) {
-        count-=10;
-        grandma_count++
-        setInterval(autoCountUp,1000,1);
-      }
-      }
-      function autoCountUp(num) {
 
-        count=count+num;
+          function cookieClick(num) {
+            cookie_count= cookie_count + num;
+          }
 
-      }
-      function fam() {
-        if (count>=300) {
-        count-=300;
-        fam_count++;
-        setInterval(autoCountUp,1000,5);
-      }
-      }
-      function autoCountUp(num) {
+          function cursor() {
+            if(cookie_count >=10){
+              cookie_count -= 10;
+              let r_id = setInterval(cookieClick,1000,1);
+              event_ids.push(r_id);
+            }
+          }
 
-        count=count+num;
+          function sell_cursor() {
+            if(event_ids.length > 0){
+              let r_id = event_ids.pop();
+              clearInterval(r_id);
+            }
+          }
+          /*
+          function grandma() {
+            if(cookie_count >=100){
+              cookie_count -= 100;
+              setInterval(cookieClick,1000,1);
+            }
+          }
+          */
+          function farm() {
+            if(cookie_count >=200){
+              cookie_count -= 200;
+              setInterval(cookieClick,1000,8);
+            }
+          }
+          function mine() {
+            if(cookie_count >=300){
+              cookie_count -= 300;
+              setInterval(cookieClick,1000,100);
+            }
+          }
 
-      }
-      function mine() {
-        if (count>=2000) {
-        count-=2000;
-        setInterval(autoCountUp,1000,100);
-      }
-      }
-      */
-      function autoCountUp(num) {
 
-        count=count+num;
+          /*施設切り替え処理*/
 
-      }
-      function buildSwitch(){
-        let buy_element =document.getElementById('mko');
-        let sell_element =document.getElementById('iop');
-        if(buy_element.style.display !="none"){
-          buy_element.style.display="block";
-        }else{
-          buy_element.style.display !="block"){
-            buy_element.style.display="none";
-        }
-      }
+          function buildings_switch() {
+            let buy_ele = document.getElementById('buildings_buy');
+            let sell_ele = document.getElementById('buildings_sell');
 
-    </script>
-    <div class="container">
-    <div class="item1">
-      <p class="animate__animated animate__bounce"><span id="count"></span>回</p>
-      <img id="zunda_img"onclick="cookie_click()" src="zunda.jpg" alt="">
-      <p>
-        <span id="count"></span>
-      </p>
-      <img src="" alt="">
-    </div>
-    <div class="item2">
-      制作
-    </div>
-    <div class="item3">
-    <div id="mko">
-    <span onclick="buildSwitch()">購入</span>
-      <u1>
-        <li onclick="grandma()">具欄間　10</li>
-        <li onclick="fam()">不亞夢　300</li>
-        <li onclick="mine()">mine　2000</li>
-      </ul>
-    </div>
-    <div id="iop">
-    <span onclick="buildSwitch()">売却</span>
-      <u1>
-        <li onclick="granma.sell()">具欄間　-10</li>
-        <li onclick="sell_fam()">不亞夢　-300</li>
-        <li onclick="sell_mine()">mine　-2000</li>
-      </ul>
-    </div>
-        </div>
-  </body>
-</html>
+            if (buy_ele.style.display != "none"){
+              buy_ele.style.display = "none";
+              sell_ele.style.display = "block";
+            }else{
+              buy_ele.style.display = "block";
+              sell_ele.style.display = "none";
+            }
+          }
+
+          </script>
+          <div class="container">
+            <div class="item1">
+              <button id="screen_switch" onclick="event_clear()" type="button" name="button">更新切り替え</button>
+              <p>
+                <span id="cookie_count"></span> cookies
+              </p>
+              <img onclick="cookieClick(1)" src="zunda.jpg" alt="">
+            </div>
+            <div class="item2">
+              制作途中
+            </div>
+            <div class="item3">
+
+              <div id="buildings_buy">
+                <span onclick="buildings_switch('buy')">購入</span>
+                <ul>
+                  <li onclick="cursor()">カーソル</li>
+                  <li onclick="grandma.buy()">グランマ</li>
+                  <li onclick="farm()">ファーム</li>
+                  <li onclick="mine()">マイン</li>
+                  <li>ファクトリー</li>
+                </ul>
+              </div>
+
+              <div id="buildings_sell">
+                <span onclick="buildings_switch('sell')">売却</span>
+                <ul>
+                  <li onclick="sell_cursor()">カーソル</li>
+                  <li onclick="grandma.sell()">グランマ</li>
+                  <li onclick="sell_farm()">ファーム</li>
+                  <li onclick="sell_mine()">マイン</li>
+                  <li>ファクトリー</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
+
+        </body>
+        </html>
