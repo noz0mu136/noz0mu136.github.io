@@ -49,7 +49,7 @@
                 let self = this;
                 let return_id = setInterval(function() {
                   self.count_up(self.add_num);
-                },1000);
+                },self.interval_time);
                 this.interval_ids.push(return_id);
 
               }
