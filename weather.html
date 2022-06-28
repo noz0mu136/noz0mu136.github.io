@@ -1,21 +1,25 @@
-<!DOCTYPE>
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title></title>
+    <style media="screen">
+    table,tr,td,th{border:1px solid black;}
+    </style>
   </head>
   <body>
 
     <table>
       <tr id="date">
+
       </tr>
       <tr id="weather">
+
       </tr>
     </table>
-    <<script type="text/javascript">
-
-    data_array=["2022-6-16",
+    <script type="text/javascript">
+/*
+    date_array=["2022-6-16",
                 "2022-6-17",
                 "2022-6-18",
                 "2022-6-19",
@@ -23,23 +27,33 @@
                 "2022-6-21",
                 "2022-6-22"];
 
-                weather_array=["晴","晴","晴","晴","晴","晴","晴"];
+    weather_array=["晴","大嵐","晴","雨","雪","雷","快晴"];
 
-      let tr_data=document.getElementById('data');
-      let tr_
+creatWeatherTable(date_array,weather_array);
+*/
+function creatWeatherTable(date_array,weather_array){
+      let tr_date=document.getElementById('date');
+      let tr_weather=document.getElementById('weather');
+
+
+      date_array.forEach(function(date, i){
+        tr_date.innerHTML=tr_date.innerHTML+"<th>"+date+"</th>";
+        tr_weather.innerHTML=tr_weather.innerHTML+"<th>"+weather_array[i]+"</th>";
+      });
+    }
       var xhr = new XMLHttpRequest();
-
+//Game.cookies = 999999999;
   xhr.open('GET', "https://api.open-meteo.com/v1/forecast?latitude=35.6785&longitude=139.6823&daily=weathercode&timezone=Asia%2FTokyo");
   xhr.send();
 
   xhr.onreadystatechange = function() {
       if(xhr.readyState === 4 && xhr.status === 200) {
-
-           let weathercode =JSON.parse(xhr.responseText)["daily"] ['weathercode'][1];
-           document.write(weathercode)
-    </script>
-
+        let date_array=JSON.parse(xhr.responseText)["daily"]["time"];
+        let weather_array =JSON.parse(xhr.responseText)["daily"] ['weathercode'];
+        creatWeatherTable(date_array,weather_array);
+      //     document.write(weathercode)
     }
-}
+  }
+    </script>
   </body>
 </html>
