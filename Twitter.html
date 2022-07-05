@@ -1,27 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <style media="screen">
+<head>
+  <style media="screen">
   .container{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-#timeline{width:600px;
-  border-width: 0px thin;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  #timeline{width:600px;
+    border-width: 0px thin;
+    border-style: solid;
+    border-color: #CCC;
+  }
+  .tweet{display:flex;
+  border-width: 0px 0px 1px 0px;
   border-style: solid;
   border-color: #CCC;
-}
-    </style>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <div class="container">
-      <div id="timeline">
-        ここにツイートを表示
-      </div>
+  padding:15px;
 
+}
+
+.icon{width:70px;}
+.icon img{width:50px;border-radius: 50%; }
+  </style>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+  <div class="container">
+    <div id="timeline">
+      <div class="tweet">
+        <div class="icon">
+          <img src="zunda2.jpg" alt="">
+        </div>
+        <div class="tweet_box">
+          <div class="username">
+            かわぽん＠川井
+          </div>
+        </div>
+      </div>
     </div>
-  </body>
+  </div>
+</body>
 </html>
