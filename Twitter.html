@@ -70,29 +70,21 @@
       <div class="container">
         <div id="timeline">
           <div class="tweet">
-            <div class="icon">
-              <img src="zunda2.jpg" alt="">
-            </div>
-            <div class="tweet_box">
-              <div class="username">
-                aaaaa
-                <span class="name">@</span>
-                <span class="date">2022/7/12</span>
-              </div>
-              <div class="text">
-                aaaaa
-              </div>
-              <div class="sction">
-                <span class="icov_chat">0</span>
-                <span class="icon_res">0</span>
-                <span class="icon_fav">0</span>
-                <span class="icon_share">0</span>
-              </div>
+            <input type="text" id="input_text" placeholder="ここに入力してね!!"/>
+              <button onclick="form_tweet()" type="button" >送信</button>
             </div>
           </div>
         </div>
         <script type="text/javascript">
         let timeline=document.getElementById('timeline')
+
+        async function post_tweet(text,name,username){
+          let send_data="?name"+name+&"&username"+username+"&text"+text
+          let res_data=res_data=await(await fetch("http://192.168.0.90/tweet.rb"+send_data)).text();
+          if(res_data!="OK"){
+            alert(res_data);
+          }
+        };
 
 
         updateTweet();
@@ -106,7 +98,7 @@
             </div>
             <div class="tweet_box">
             <div class="username">
-            aaaaa
+            ${tweet.username}
             <span class="name">@</span>
             <span class="date">${tweet.date}</span>
             </div>
