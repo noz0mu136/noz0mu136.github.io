@@ -87,7 +87,7 @@
         }
 
         async function post_tweet(text,name,username){
-          let send_data="?name"+name+"&username"+username+"&text"+text
+          let send_data="?name="+name+"&username="+username+"&text"+text
           let res_data=res_data=await(await fetch("http://192.168.0.90/tweet.rb"+send_data)).text();
           if(res_data!="OK"){
             alert(res_data);
