@@ -78,17 +78,17 @@
         <script type="text/javascript">
         let timeline=document.getElementById('timeline')
 
-        function from_tweet() {
+        function form_tweet() {
           let input_text=document.getElementById('input_text');
           if(input_text.value !=""){
-            post_tweet(input_text.value,"7856","7541");
+            post_tweet(input_text.value,"8356","たすけて");
             input_text.value="";
           }
         }
 
         async function post_tweet(text,name,username){
-          let send_data="?name="+name+"&username="+username+"&text"+text
-          let res_data=res_data=await(await fetch("http://192.168.0.90/tweet.rb"+send_data)).text();
+          let send_data="?name="+name+"&username="+username+"&text="+text
+          let res_data=await(await fetch("http://192.168.0.90/tweet.rb"+send_data)).text();
           if(res_data!="OK"){
             alert(res_data);
           }
@@ -97,8 +97,16 @@
 
         updateTweet();
 
+
+        function escapeText(text){
+          let element = document.createElement("div");
+          element.textContent = text;
+          return element.innerHTML.replace(/\n/g,"<br>");
+        }
+
+
         async function updateTweet() {
-          let array =await(await fetch("http://192.168.0.90/timeline.json")).json();
+          let array =await(await fetch("http://192.168.0.90/timeline.json?")).json();
           array.forEach((tweet)=>{
             let template=`  <div class="tweet">
             <div class="icon">
@@ -106,12 +114,12 @@
             </div>
             <div class="tweet_box">
             <div class="username">
-            ${tweet.username}
-            <span class="name">@</span>
+            ${escapeText(tweet.username)}
+            <span class="name">@${escapeText(tweet.name)}</span>
             <span class="date">${tweet.date}</span>
             </div>
             <div class="text">
-            ${tweet.text}
+            ${escapeText(tweet.text)}
             </div>
             <div class="sction">
             <span class="icov_chat">0</span>
