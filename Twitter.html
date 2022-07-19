@@ -81,12 +81,12 @@
         function form_tweet() {
           let input_text=document.getElementById('input_text');
           if(input_text.value !=""){
-            post_tweet(input_text.value,"8356","たすけて");
+            post_tweet(input_text.value,"7585","114587");
             input_text.value="";
           }
         }
 
-        async function post_tweet(text,name,username){
+        async function post_tweet(text,username,name){
           let send_data="?name="+name+"&username="+username+"&text="+text
           let res_data=await(await fetch("http://192.168.0.90/tweet.rb"+send_data)).text();
           if(res_data!="OK"){
@@ -107,6 +107,12 @@
 
         async function updateTweet() {
           let array =await(await fetch("http://192.168.0.90/timeline.json?")).json();
+
+          let tweets= document.getElementsByClassName("tweet");
+          while (tweets.length>1) {
+            tweets.item(1).remove()
+          }
+          
           array.forEach((tweet)=>{
             let template=`  <div class="tweet">
             <div class="icon">
@@ -131,6 +137,7 @@
             </div>`
             timeline.innerHTML=timeline.innerHTML+template
           });
+          setTimeout(updateTweet,5000);
         }
         </script>
       </div>
